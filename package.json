@@ -1,0 +1,15 @@
+{
+  "name": "mausam---the-weather-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "sass:start": "sass --watch ./scss/style.scss ./css/style.css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "sass": "^1.62.0"
+  }
+}

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mausam - The Weather App</title>
+
+    <!-- Google fonts Roboto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <!-- box-icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+
+    <!-- custom css file -->
+    <link rel="stylesheet" href="./css/style.css">
+
+</head>
+<body>
+
+    <header>
+        <div class="container">
+
+            <div class="input-wrapper">
+                <form>
+                    <input type="text" placeholder="City...">
+                    <button type="submit">
+                        <i class='bx bx-paper-plane'></i>
+                    </button>
+                </form>
+            </div>
+
+            <div class="action-buttons" data-sidebar>
+                <button class="close-menu" data-close-menu>
+                    <i class='bx bx-x' ></i>
+                </button>
+
+                <div>
+                    <button class="current" data-btn data-current-btn>
+                        <span>Current Location</span>
+                        
+                        <i class='bx bx-current-location' ></i>
+                    </button>
+    
+                    <div class="convert">
+                        <button class="cel" data-btn>C</button>
+                        <button class="fer" data-btn>F</button>
+                    </div>
+                </div>
+            </div>
+
+            <button class="open-menu" data-open-menu>
+                <i class='bx bx-menu'></i>
+            </button>
+
+            <div class="overlay" data-overlay></div>
+
+        </div>
+    </header>
+
+    <section class="city-buttons">
+        <div class="container">
+
+            <button data-city>Delhi</button>
+            <button data-city>Mumbai</button>
+            <button data-city>Chennai</button>
+            <button data-city>Kolkata</button>
+
+        </div>
+    </section>
+
+    <div data-main></div>
+
+
+    <main>
+
+        <section class="weather">
+            <div class="container">
+
+                <!-- current weather card -->
+                <div class="current-weather">
+                    <span>Now</span>
+
+                    <div class="current-temp">
+                        <div>
+                            <h1 data-temp>5°</h1>
+                            <span>C</span>
+                        </div>
+
+                        <img src="./images/01d.png" alt="img" --width="96" --height="96" data-icon>
+                    </div>
+
+                    <p data-description>Broken clouds</p>
+
+                    <div class="extra">
+                        <i class='bx bx-calendar' ></i>
+
+                        <span data-date>Wednesday 1, Mar</span>
+                    </div>
+
+                    <div class="extra">
+                        <i class='bx bx-map'></i>
+
+                        <span data-location>London, GB</span>
+                    </div>
+                </div>
+
+                <!-- sunrise and sunset -->
+                <div class="sunriseset">
+                    <div class="rise">
+                        <span>Sunrise</span>
+
+                        <div>
+                            <i class='bx bx-sun' ></i>
+                            <span data-sunrise>06:46 AM</span>
+                        </div>
+                    </div>
+                    <div class="set">
+                        <span>Sunset</span>
+
+                        <div>
+                            <i class='bx bx-moon' ></i>
+                            <span data-sunset>06:46 PM</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Extra details -->
+                <div class="extra-details">
+                    <div class="humidity">
+                        <span>Humidity</span>
+
+                        <div>
+                            <i class='bx bxs-droplet-half' ></i>
+
+                            <span data-humidity>82%</span>
+                        </div>
+                    </div>
+
+                    <div class="pressure">
+                        <span>Pressure</span>
+
+                        <div>
+                            <i class='bx bx-wind'></i>
+
+                            <span data-pressure>1025hPa</span>
+                        </div>
+                    </div>
+                    <div class="visibility">
+                        <span>Visibility</span>
+
+                        <div>
+                            <i class='bx bx-low-vision'></i>
+
+                            <span data-visibility>10KM</span>
+                        </div>
+                    </div>
+                    <div class="feels">
+                        <span>Feels Like</span>
+
+                        <div>
+                            <i class='bx bxs-thermometer'></i>
+
+                            <span data-feel>5°</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <section class="temperature">
+            <div class="container">
+
+                <h3>Today At</h3>
+
+                <div class="temp-cards" data-temp-cards>
+
+                    <!-- <div class="temp-card">
+                        <p>9 PM</p>
+
+                        <img src="./images/03d.png" alt="">
+
+                        <span>clear</span>
+
+                        <span>5°</span>
+                    </div> -->
+
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <div class="loader" data-loader>
+        <span></span>
+    </div>
+    
+
+    <!-- custom js file -->
+    <script src="./js/main.js" type="module"></script>
+</body>
+</html>

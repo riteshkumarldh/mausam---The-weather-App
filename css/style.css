@@ -1,0 +1,502 @@
+:root {
+  --body-color: #121212;
+  --card-color: #1e1e1e;
+  --p-text: #c0c5c9;
+  --title-color: #c0c5c9;
+  --btn: #240217;
+  --ff-Roboto: "Roboto", sans-serif;
+}
+
+.light {
+  --body-color: antiquewhite;
+  --card-color: white;
+  --p-text: black;
+  --title-color: black;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--ff-Roboto);
+  background-color: var(--body-color);
+  color: var(--p-text);
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 6px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+::-webkit-scrollbar-track {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+a,
+span,
+button {
+  display: block;
+}
+
+li {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button,
+input {
+  background: none;
+  border: none;
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+input {
+  width: 100%;
+  outline: none;
+}
+
+.container {
+  margin-inline: 1.5rem;
+}
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 740px;
+    margin-inline: auto;
+  }
+}
+@media screen and (min-width: 992px) {
+  .container {
+    max-width: 960px;
+    margin-inline: auto;
+  }
+}
+
+img {
+  max-width: 96px;
+  width: 100%;
+}
+
+header {
+  height: 10rem;
+  background-color: var(--card-color);
+}
+header .container {
+  height: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+header .container .input-wrapper {
+  flex: 2;
+}
+header .container .input-wrapper form {
+  height: 5rem;
+  border: 0.5px solid var(--title-color);
+  border-radius: 0.5rem;
+  position: relative;
+  width: 100%;
+}
+header .container .input-wrapper form input {
+  height: 100%;
+  padding-inline: 1.5rem 5rem;
+}
+header .container .input-wrapper form button {
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%);
+}
+header .container .input-wrapper form button i {
+  font-size: 2.5rem;
+}
+header .container .action-buttons {
+  position: fixed;
+  background-color: var(--card-color);
+  left: -250px;
+  top: 0;
+  height: 100vh;
+  max-width: 250px;
+  width: 100%;
+  z-index: 5;
+  transition: 0.3s;
+}
+@media screen and (min-width: 992px) {
+  header .container .action-buttons {
+    all: unset;
+  }
+}
+header .container .action-buttons.active {
+  left: 0;
+}
+header .container .action-buttons .close-menu {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+@media screen and (min-width: 992px) {
+  header .container .action-buttons .close-menu {
+    display: none;
+  }
+}
+header .container .action-buttons .close-menu i {
+  font-size: 4rem;
+}
+header .container .action-buttons > div {
+  margin-top: 100px;
+  padding-inline: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+@media screen and (min-width: 992px) {
+  header .container .action-buttons > div {
+    margin-top: 0;
+    flex-direction: row;
+  }
+}
+header .container .action-buttons > div .current {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: var(--btn);
+  padding: 1rem 0;
+  border-radius: 0.8rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+@media screen and (min-width: 992px) {
+  header .container .action-buttons > div .current {
+    padding: 1rem 2rem;
+  }
+}
+header .container .action-buttons > div .current i {
+  font-size: 2rem;
+  color: var(--p-text);
+}
+header .container .action-buttons > div .convert {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+header .container .action-buttons > div .convert button {
+  background-color: var(--btn);
+  padding: 1rem 2.5rem;
+  color: rgba(255, 255, 255, 0.5);
+  width: 50%;
+  font-weight: 700;
+  border-radius: 1rem;
+}
+header .container .open-menu {
+  border: 1px solid var(--title-color);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.5rem;
+  display: grid;
+  place-items: center;
+}
+@media screen and (min-width: 992px) {
+  header .container .open-menu {
+    display: none;
+  }
+}
+header .container .open-menu i {
+  font-size: 3.5rem;
+}
+header .container .overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 4;
+  display: none;
+}
+@media screen and (min-width: 992px) {
+  header .container .overlay {
+    display: none;
+  }
+}
+header .container .overlay.active {
+  display: block;
+}
+@media screen and (min-width: 992px) {
+  header .container .overlay.active {
+    display: none;
+  }
+}
+
+.city-buttons {
+  margin-top: 1rem;
+}
+@media screen and (min-width: 768px) {
+  .city-buttons {
+    margin-top: 3rem;
+  }
+}
+.city-buttons .container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+@media screen and (min-width: 768px) {
+  .city-buttons .container {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4rem;
+  }
+}
+.city-buttons .container button {
+  background-color: var(--btn);
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+.city-buttons .container button.active {
+  color: #fff;
+}
+
+.weather {
+  margin-block-start: 5rem;
+}
+.weather .container {
+  display: grid;
+  gap: 2rem;
+}
+@media screen and (min-width: 768px) {
+  .weather .container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.weather .container .current-weather {
+  background-color: var(--card-color);
+  border-radius: 2rem;
+  padding: 2rem;
+}
+.weather .container .current-weather > span {
+  font-size: 1.8rem;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.weather .container .current-weather .current-temp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-block: 1rem;
+}
+.weather .container .current-weather .current-temp > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.weather .container .current-weather .current-temp > div h1 {
+  font-size: 6rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+.weather .container .current-weather .current-temp > div span {
+  font-size: 3.5rem;
+  font-weight: 400;
+  line-height: 1.5;
+}
+.weather .container .current-weather > p {
+  font-size: 1.5rem;
+  font-weight: 300;
+  line-height: 1.5;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+.weather .container .current-weather .extra {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.weather .container .current-weather .extra span {
+  font-size: 1.4rem;
+  font-weight: 300;
+  line-height: 1.5;
+}
+.weather .container .sunriseset {
+  background-color: var(--card-color);
+  border-radius: 2rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+.weather .container .sunriseset > div {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.weather .container .sunriseset > div span {
+  font-size: 1.6rem;
+  font-weight: 300;
+  line-height: 1.5;
+}
+.weather .container .sunriseset > div div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-content: space-between;
+  gap: 4rem;
+}
+.weather .container .sunriseset > div div i {
+  font-size: 5rem;
+}
+@media screen and (min-width: 768px) {
+  .weather .container .sunriseset > div div i {
+    font-size: 6rem;
+  }
+}
+.weather .container .sunriseset > div div span {
+  font-size: 2.5rem;
+}
+.weather .container .extra-details {
+  background-color: var(--card-color);
+  border-radius: 2rem;
+  padding: 2rem;
+  display: grid;
+  flex-direction: column;
+  gap: 3rem;
+}
+@media screen and (min-width: 768px) {
+  .weather .container .extra-details {
+    grid-column: span 2;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem 20rem;
+  }
+}
+@media screen and (min-width: 992px) {
+  .weather .container .extra-details {
+    gap: 6rem 25rem;
+  }
+}
+.weather .container .extra-details > div {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.weather .container .extra-details > div:not(:last-child) {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 2rem;
+}
+@media screen and (min-width: 768px) {
+  .weather .container .extra-details > div:not(:last-child) {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+}
+.weather .container .extra-details > div span {
+  font-size: 1.6rem;
+  font-weight: 300;
+  line-height: 1.5;
+}
+.weather .container .extra-details > div div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-content: space-between;
+  gap: 4rem;
+}
+.weather .container .extra-details > div div i {
+  font-size: 5rem;
+}
+@media screen and (min-width: 768px) {
+  .weather .container .extra-details > div div i {
+    font-size: 6rem;
+  }
+}
+.weather .container .extra-details > div div span {
+  font-size: 2.5rem;
+}
+
+.temperature {
+  margin-block: 5rem;
+}
+.temperature .container h3 {
+  margin-bottom: 1rem;
+}
+.temperature .container .temp-cards {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 2rem;
+  overflow-y: scroll;
+}
+.temperature .container .temp-cards::-webkit-scrollbar {
+  display: none;
+}
+.temperature .container .temp-cards .temp-card {
+  padding-block: 1rem;
+  background-color: var(--card-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1rem;
+  border-radius: 1rem;
+  min-width: 130px;
+}
+.temperature .container .temp-cards .temp-card img {
+  transform: scale(0.6);
+}
+
+.loader {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.75);
+  place-items: center;
+  display: none;
+}
+.loader.active {
+  display: grid;
+}
+.loader span {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  border: 8px solid rgba(255, 255, 255, 0.1);
+  border-top-color: rgba(255, 255, 255, 0.8);
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/*# sourceMappingURL=style.css.map */
