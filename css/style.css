@@ -498,5 +498,12 @@ header .container .overlay.active {
     transform: rotate(360deg);
   }
 }
+footer {
+  text-align: center;
+  margin-block: 2rem;
+}
+footer a:hover {
+  color: yellow;
+}
 
 /*# sourceMappingURL=style.css.map */

@@ -68,6 +68,7 @@ currentLocationButton.addEventListener("click", (e) => {
     navigator.geolocation.getCurrentPosition(onSuccess , onError);
 });
 
+// onSuccess of fetching current location
 const onSuccess = (location) => {
     // console.log(location.coords);
     const {latitude, longitude} = location.coords;
@@ -76,11 +77,13 @@ const onSuccess = (location) => {
     fetchHourlyData(latitude , longitude);
 }
 
+// when user denied or geolocation api not support in browser
 const onError = () => {
-    mainContainer.innerHTML = `<h1 style="text-align: center; margin-top: 100px">Give permission to access the weather data of your location</h1>`;
+    alert("permission issue or internet issue");
     return;
 }
 
+// fetching current weather data on basisi of latitiude and longitude
 const fetchDataCurrentLocation = async (lat , lon , unit="metric") => {
     const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=${unit}`;
 
@@ -90,7 +93,7 @@ const fetchDataCurrentLocation = async (lat , lon , unit="metric") => {
         const response = await fetch(url);
         if(response.ok){
             const result = await response.json();
-            console.log(result);
+            // console.log(result);
 
             displayCurrentWeatherData(result);
 
@@ -106,6 +109,7 @@ const fetchDataCurrentLocation = async (lat , lon , unit="metric") => {
     }
 }
 
+// fetching 3 hourly data on basisi of latitiude and longitude
 const fetchHourlyData = async(lat, lon, unit="metric") => {
     const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=${unit}`;
 
@@ -130,7 +134,7 @@ const fetchHourlyData = async(lat, lon, unit="metric") => {
     }
 }
 
-// references
+// references which we update
 const currTemp = document.querySelector("[data-temp]");
 const weatherIcon = document.querySelector("[data-icon]");
 const weatherDescription = document.querySelector("[data-description]");
@@ -143,6 +147,7 @@ const pressureEl = document.querySelector("[data-pressure]");
 const visibilityEl = document.querySelector("[data-visibility]");
 const feelLikeEl = document.querySelector("[data-feel]");
 
+// creates utility function to convert into date and time also we return the required things
 const cd = (inSeconds) => {
     const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const months = ["JAN", "FEB", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUG", "SEP", "OCT", "NOV", "DEC"];
@@ -173,6 +178,7 @@ const cd = (inSeconds) => {
     }
 }
 
+// displaying the current weather data
 const displayCurrentWeatherData = (allData) => {
     const {main: {feels_like, humidity, pressure, temp}, dt, name, sys: {country, sunrise, sunset}, weather, visibility} = allData;
     const {icon, description} = weather[0];
@@ -180,7 +186,6 @@ const displayCurrentWeatherData = (allData) => {
     const currentDate = cd(dt);
     const sunRiseTime = cd(sunrise);
     const sunSetTime = cd(sunset);
-    
 
     currTemp.textContent = `${temp.toFixed()}°`;
     weatherIcon.src = `./images/${icon}.png`;
@@ -194,11 +199,10 @@ const displayCurrentWeatherData = (allData) => {
     visibilityEl.textContent = `${visibility/1000}KM`;
     feelLikeEl.textContent = `${feels_like.toFixed()}°`;
 
-    
 }
 
 
-
+// displaying 3 hourly weather cards
 const displayHourlyWeather = (arrayOfData) => {
     const tempCardsContainer = document.querySelector("[data-temp-cards]");
 
@@ -243,6 +247,7 @@ cityBtn.forEach((button) => {
     });
 });
 
+// fetching current weather data basis of city name
 const fetchCityWeather = async(name, unit="metric") => {
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${name}&appid=${API_KEY}&units=${unit}`;
 
@@ -270,18 +275,17 @@ const fetchCityWeather = async(name, unit="metric") => {
 }
 
 
-// need to check this functiom
+// fetching 3 hourly data basis of city name
 const fetchCityHourlyData = async(name, unit="metric") => {
 
-    const iurl =  `api.openweathermap.org/data/2.5/forecast?q=${name}&appid=${API_KEY}`;
-    
-    console.log(name, unit);
+    const url = `https://api.openweathermap.org/data/2.5/forecast?q=${name}&appid=${API_KEY}&units=${unit}`;
 
     try {
         loader.classList.add("active");
-        
-        const response = await fetch(iurl);
-        console.log(response);
+        const response = await fetch(url);
+        const result = await response.json();
+        // console.log(result.list);
+        displayHourlyWeather(result.list);
         
         loader.classList.remove("active");
     } catch(err) {
@@ -290,3 +294,35 @@ const fetchCityHourlyData = async(name, unit="metric") => {
         return;
     }
 }
+
+
+const searchForm = document.querySelector("[data-form]");
+const inputField = document.querySelector("[data-input]");
+
+// fetching data on basis of user search
+searchForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const searchedCity = inputField.value.trim().toLowerCase();
+    if(searchedCity.length < 1) return;
+
+    fetchCityWeather(searchedCity);
+    fetchCityHourlyData(searchedCity);
+    
+    
+    inputField.value = "";
+});
+
+// onLoad we fetch delhi city weather
+window.addEventListener("DOMContentLoaded", () => {
+    fetchCityWeather("delhi");
+    fetchCityHourlyData("delhi");
+});
+
+
+celBtn.addEventListener("click", () => {
+    alert("This feature is not implemented yet");
+});
+ferBtn.addEventListener("click", () => {
+    alert("This feature is not implemented yet");
+});
